@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NewsCard from './NewsCard';
+import Form from './itemsForm';
+import Order from './Order';
 import {
-  getNewsByKeyword,
-  getNewsfeed,
+  getOrder,
+  updateOrder,
 } from '../actions';
 
 class Home extends Component {
@@ -12,23 +13,39 @@ class Home extends Component {
     this.state = {
       redirect: null,
     };
-    this.props.getNewsByKeyword('apple'),
-    this.props.getNewsfeed(),
+    this.props.getOrder();
   }
 
   render() {
     return (
-      <NewsCard />
+      <div>
+        {this.props.formIsVisible && 
+          <Form 
+            items={this.props.items}
+            updateOrder={this.props.updateOrder}
+          />
+        }
+        <div style={{ marginLeft: 20 }}>
+          <h4>ORDER #{this.props.number}</h4>
+        </div>
+        <Order 
+          items={this.props.items}
+          currency={this.props.currency}
+        />
+      </div>
     );
   }
 };
 
-const mapStateToProps = ({ }) => ({
-
+const mapStateToProps = ({ home, header }) => ({
+  items: home.items,
+  number: home.number,
+  currency: home.currency,
+  formIsVisible: header.formIsVisible
 });
 
 export default connect(mapStateToProps, {
-  getNewsByKeyword,
-  getNewsfeed,
+  getOrder,
+  updateOrder,
 })(Home);
 
