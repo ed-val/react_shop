@@ -46,7 +46,7 @@ class Order extends Component {
           <p>Price: {item.price} {this.props.currency} <br />
             Quantity: {item.quantity}
           </p>
-          <div className="secondary-content red-text ">
+          <div className="secondary-content blue-text">
           <p>Subtotal: <br />
             {item.price * item.quantity} {this.props.currency}
           </p>
