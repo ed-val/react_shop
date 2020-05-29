@@ -11,7 +11,7 @@ const divStyle = {
   textAlign: 'center'
 };
 
-class NotFound extends Component {
+class Landing extends Component {
   constructor(props) {
     super(props);
     props.landingIsActive(true);
@@ -21,28 +21,34 @@ class NotFound extends Component {
   renderPromo() {
     return (
       <div style={{ backgroundColor: 'rgba(52, 52, 52, 0.05)', borderRadius: '25px', margin: "30px"}} className="row">
-        <div style={{ margin: '20px 0px 20px 0px' }} className="col s12">
-          <h2>The news!</h2>
+        <div className="row s12">
+          <img 
+            src={require("../assets/shop_logo.png")} 
+            alt={''} 
+            height="60%" 
+            width="60%">
+          </img>
         </div>
+
         <div className="col s12 m12 l4">
           <div className="center promo promo-example">
             <i style={{ fontSize: "90px", color: '#b71c1c'}} className="material-icons ">flash_on</i>
-            <p className="promo-caption">Enjoy the fastest experience </p>
-            <p className="light center">We are proud of the product we've put together. With it you can search and find any Pokemon you can think of in no time. Our loading times are crazy fast!.</p>
+            <p className="promo-caption">Enjoy the fastest experience</p>
+            <p className="light center">With our app you can add up elements to your order in NO TIME and edit it in any way you see fit</p>
           </div>
         </div>
         <div className="col s12 m12 l4">
           <div className="center promo promo-example">
-            <i style={{ fontSize: "90px", color: '#b71c1c'}} className="material-icons ">check_circle</i>
-            <p className="promo-caption">User friendly</p>
-            <p className="light center">Use this web application, at anytime in any device. Yes, it also supports mobile screens, login now and catch 'em all.</p>
+            <i style={{ fontSize: "90px", color: '#b71c1c'}} className="material-icons ">devices</i>
+            <p className="promo-caption">Simple, yet elegant</p>
+            <p className="light center">Use this web application, at anytime in any device. Yes, it also supports mobile screens, so you can keep on buy from anywhere, anytime!</p>
           </div>
         </div>
         <div className="col s12 m12 l4">
           <div className="center promo promo-example">
-            <i style={{ fontSize: "90px", color: '#b71c1c'}} className="material-icons ">insert_chart</i>
-            <p className="promo-caption">All Pokemons in just one place</p>
-            <p className="light center">We've worked effortlessly so you dont have to look around somewhere else to figure out a certain detail most Pokedex overlook. </p>
+            <i style={{ fontSize: "90px", color: '#b71c1c'}} className="material-icons ">settings_applications</i>
+            <p className="promo-caption">All tools in just one place</p>
+            <p className="light center">Now you dont need to keep looking for that small button just to get your cart ready. Add items and make your purchase in the easiest way</p>
           </div>
         </div>
         <div style={{ margin: '20px 0px 20px 0px' }} className="col s12">
@@ -83,5 +89,5 @@ const mapStateToProps = ({  }) => ({
 
 export default connect(mapStateToProps, { 
   landingIsActive,
-})(NotFound);
+})(Landing);
 
