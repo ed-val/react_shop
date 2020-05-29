@@ -28,28 +28,28 @@ export const landingIsActive = (value) => {
   return { type: 'LANDING_IS_ACTIVE', payload: value };
 };
 
-export const searchBarInputChange = (input) => {
-  return { type: 'CHANGE_USER_SB_INPUT', payload: input };
+export const showForm = (value) => {
+  return { type: 'SHOW_FORM', payload: value };
 };
 
-export const getNewsByKeyword = (keyword) => async dispatch => {
-  dispatch({ type: 'GET_NEWS_BY_KEYWORD' });
-  try {
-    const res = await API.getNewsByKeyword(keyword);
-    // if (res) dispatch({ type: 'GET_NEWS_BY_KEYWORD_SUCCESS', payload: res.data });
-    // if (!res) dispatch({ type: 'GET_NEWS_BY_KEYWORD_FAIL'});
-  } catch (err) {
-    console.log(err);
-  }
+export const updateOrder = (newItems) => {
+  return { type: 'UPDATE_ORDER', payload: newItems };
 };
 
-export const getNewsfeed = () => async dispatch => {
-  dispatch({ type: 'GET_NEWSFEED' });
+export const getOrder = () => async dispatch => {
+  dispatch({ type: 'GET_ORDER' });
   try {
-    const res = await API.getNewsfeed();
-    // if (res) dispatch({ type: 'GET_NEWS_BY_KEYWORD_SUCCESS', payload: res.data });
-    // if (!res) dispatch({ type: 'GET_NEWS_BY_KEYWORD_FAIL'});
+    const res = await API.getOrder();
+    if (!res.error) {
+      dispatch({ 
+        type: 'GET_ORDER_SUCCESS', 
+        payload: { items: res.items, number: res.number, currency: res.currency } 
+      });
+      return;
+    }
+    dispatch({ type: 'GET_ORDER_FAIL', payload: res.errorMsg });
   } catch (err) {
+    dispatch({ type: 'GET_ORDER_FAIL', payload: err });
     console.log(err);
   }
 };
