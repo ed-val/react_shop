@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { searchBarInputChange,  } from '../actions';
+import { showForm } from '../actions';
 // import Payments from './Payments';
 
 class Header extends Component {
@@ -14,58 +14,45 @@ class Header extends Component {
   }
 
   _renderContent() {
+    const { showForm, formIsVisible } = this.props;
     switch (this.props.user) {
       case null:
         return;
       default:
         return [
-          // <li key="1"><Payments /></li>,
-          // <li key="2" onClick={this._toggleSearchBar.bind(this)} ><a><i className="material-icons left">search</i>Search Pokemon</a></li>,
-          // <li key="2" style={{ margin: '0 30px' }}>Credits: {this.props.user.credits}</li>,
-          <li key="3"><a href="/api/logout">Log Out</a></li>
+          <li key="2" onClick={() => showForm(!formIsVisible)}>
+            {this.props.formIsVisible ? 
+              <a href='#!'>
+                <i className="material-icons left">done</i>
+                DONE EDITING
+              </a> 
+            : 
+              <a href='#!'>
+                <i className="material-icons left">add_shopping_cart</i>
+                ADD ITEMS
+              </a> 
+            }
+          </li>,
+          <li key="3"><a href="/api/logout">LOG OUT</a></li>
         ];
     }
   }
 
-  _toggleSearchBar() {
-    this.setState({ showSearchBar: !this.state.showSearchBar });
-  }
-  
-  _onSearchBarChange(event) {
-    this.setState({ searchbarText: event.target.value});
-  }
-
-  _handleKeyDown(e) {
-    if (e.key === 'Enter') {
-    }
-  }
-
-  renderSearchBar() {
-    return (
-      <div className="row s12 red darken-4 nav-wrapper">
-        <form>
-          <div className="input-field">
-            <input onKeyDown={this._handleKeyDown.bind(this)} placeholder='Search by ID or name' onChange={this._onSearchBarChange.bind(this)} id="search" type="search" required></input>
-            <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-            <i onClick={this._toggleSearchBar.bind(this)} className="material-icons">close</i>
-          </div>
-        </form>
-      </div>
-    );
-  }
-
+ 
   renderNavigationBar() {
     return (
       <div className="red darken-4 nav-wrapper">
         <Link
-          to={this.props.user ? '/surveys' : '/'}
+          to={'/home'}
           className="brand-logo"
         >
           <img 
-            src={require("../assets/news_logo.png")} 
+            style={{ marginLeft: 15 }}
+            src={require("../assets/shop_logo_white.png")} 
             alt={''} 
-            height="55" 
-            width="55">
+            height="60" 
+            width="70"
+          >
           </img>
         </Link>
         <ul className="right hide-on-med-and-down">
@@ -91,10 +78,10 @@ class Header extends Component {
 const mapStateToProps = ({ auth, header }) => {
   return {
     user: auth.user,
-    searchBarInput: header.searchBarInput
+    formIsVisible: header.formIsVisible
   };
 };
 
 export default connect(mapStateToProps, {
-  searchBarInputChange,
+  showForm,
 })(Header);
