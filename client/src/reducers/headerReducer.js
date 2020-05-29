@@ -1,11 +1,11 @@
 const INITIAL_STATE = {
-  searchBarInput: false
+  formIsVisible: false
 };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'CHANGE_USER_SB_INPUT': {
-      return { ...state, searchBarInput: action.payload };
+    case 'SHOW_FORM': {
+      return { ...state, formIsVisible: action.payload };
     }
     default:
       return state;
