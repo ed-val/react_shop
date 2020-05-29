@@ -51,7 +51,7 @@ In adition to the aforedmentioned behavior this client also displays:
 * Login with google
 * Landing page
 * Modal component to output errors to user
-* Input level form validation
+* Input level validation inside form
 * Alert when user submits an order
 
 ### License
